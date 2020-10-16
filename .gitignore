@@ -1,0 +1,4 @@
+task1/
+*.zip
+lost+found/
+*.pyc
