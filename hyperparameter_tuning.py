@@ -23,19 +23,19 @@ def main():
         data_format='channels_last'
     )
 
-    history_dir = "/home/langston/history"
-    model_dir = "/home/langston/models"
+    history_dir = "history"
+    model_dir = "models"
     mkdir_if_not_exist(history_dir)
     mkdir_if_not_exist(model_dir)
     history_dir += "/"
     model_dir += "/"
 
-    results_filename = '/home/langston/results.csv'
+    results_filename = 'results.csv'
 
     columns = ['Frozen Layers', 'Initial LR', 'LR Decay', 'Max Epochs', 'Train Loss', 'Train Accuracy', 'Train AUC', 'Val Loss', 'Val Accuracy', 'Val AUC']
     results = pd.DataFrame(columns = columns)
 
-    for i in range(30):
+    for i in range(2):
         # INITIALIZE HYPERPARAMS
         # Model has 177 layers
         frozen_layers = np.random.randint(100, 176)
