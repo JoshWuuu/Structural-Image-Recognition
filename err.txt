@@ -4,3 +4,27 @@ This property should not be used in TensorFlow 2.0, as updates are applied autom
 WARNING:tensorflow:From /home/ubuntu/anaconda3/envs/tensorflow2_latest_p37/gpu/lib/python3.7/site-packages/tensorflow/python/training/tracking/tracking.py:111: Layer.updates (from tensorflow.python.keras.engine.base_layer) is deprecated and will be removed in a future version.
 Instructions for updating:
 This property should not be used in TensorFlow 2.0, as updates are applied automatically.
+WARNING:tensorflow:From /home/ubuntu/anaconda3/envs/tensorflow2_latest_p37/gpu/lib/python3.7/site-packages/tensorflow/python/training/tracking/tracking.py:111: Model.state_updates (from tensorflow.python.keras.engine.training) is deprecated and will be removed in a future version.
+Instructions for updating:
+This property should not be used in TensorFlow 2.0, as updates are applied automatically.
+WARNING:tensorflow:From /home/ubuntu/anaconda3/envs/tensorflow2_latest_p37/gpu/lib/python3.7/site-packages/tensorflow/python/training/tracking/tracking.py:111: Layer.updates (from tensorflow.python.keras.engine.base_layer) is deprecated and will be removed in a future version.
+Instructions for updating:
+This property should not be used in TensorFlow 2.0, as updates are applied automatically.
+Traceback (most recent call last):
+  File "hyperparameter_tuning.py", line 75, in <module>
+    main()
+  File "hyperparameter_tuning.py", line 66, in main
+    results.loc[i] = hyper_param_arr + train_perf + val_perf
+  File "/home/ubuntu/anaconda3/envs/tensorflow2_latest_p37/lib/python3.7/site-packages/pandas/core/indexing.py", line 670, in __setitem__
+    self._setitem_with_indexer(indexer, value)
+  File "/home/ubuntu/anaconda3/envs/tensorflow2_latest_p37/lib/python3.7/site-packages/pandas/core/indexing.py", line 874, in _setitem_with_indexer
+    return self._setitem_with_indexer_missing(indexer, value)
+  File "/home/ubuntu/anaconda3/envs/tensorflow2_latest_p37/lib/python3.7/site-packages/pandas/core/indexing.py", line 1118, in _setitem_with_indexer_missing
+    raise ValueError("cannot set a row with mismatched columns")
+ValueError: cannot set a row with mismatched columns
+WARNING:tensorflow:From /home/ubuntu/anaconda3/envs/tensorflow2_latest_p37/gpu/lib/python3.7/site-packages/tensorflow/python/training/tracking/tracking.py:111: Model.state_updates (from tensorflow.python.keras.engine.training) is deprecated and will be removed in a future version.
+Instructions for updating:
+This property should not be used in TensorFlow 2.0, as updates are applied automatically.
+WARNING:tensorflow:From /home/ubuntu/anaconda3/envs/tensorflow2_latest_p37/gpu/lib/python3.7/site-packages/tensorflow/python/training/tracking/tracking.py:111: Layer.updates (from tensorflow.python.keras.engine.base_layer) is deprecated and will be removed in a future version.
+Instructions for updating:
+This property should not be used in TensorFlow 2.0, as updates are applied automatically.

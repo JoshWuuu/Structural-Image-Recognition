@@ -35,17 +35,20 @@ def main():
     results_filename = 'results.csv'
 
     columns = ['Frozen Layers', 'Initial LR', 'LR Decay', 'Max Epochs', 'Train Loss', 'Train Accuracy', 'Train AUC', 'Val Loss', 'Val Accuracy', 'Val AUC']
-    results = pd.DataFrame(columns = columns)
-
-    for i in range(30):
+    with open(results_filename, 'r') as f:
+        results = pd.read_csv(f, index_col = 0)
+    print(results.columns)
+    start = len(results.index)
+    for i in range(start, start + 100):
         # INITIALIZE HYPERPARAMS
         # Model has 177 layers
-        frozen_layers = np.random.randint(100, 176)
-        exp = np.random.uniform(1, 5)
+        # frozen_layers = np.random.randint(100, 176)
+        frozen_layers = 150
+        exp = np.random.uniform(1, 3)
         initial_lr = 10 ** (- exp)
-        decay_rate_exp = np.random.uniform(1, 2.5)
-        lr_decay = 1 - 10 ** (-decay_rate_exp)
-        max_epochs = np.random.randint(10, 15)
+        lr_decay = np.random.uniform(0.7, 1)        
+        max_epochs = 7 
+        # max_epochs = np.random.randint(10, 15)
 
         print(f"TRAINING MODEL WITH HYPERPARAMS -- frozen_layers: {frozen_layers}, initial_lr: {initial_lr}, lr_decay: {lr_decay}, max_epochs: {max_epochs}")
         # Create Model
