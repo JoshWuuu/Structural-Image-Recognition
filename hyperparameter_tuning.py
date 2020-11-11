@@ -40,15 +40,20 @@ def main():
         results = pd.read_csv(f, index_col = 0)
     print(results.columns)
     start = len(results.index)
-    for i in range(start, start + 3):
+    count = 0
+    for i in range(start, start + 10):
+        count += 1
         # INITIALIZE HYPERPARAMS
         # Model has 177 layers
         # frozen_layers = np.random.randint(100, 176)
-        frozen_layers = np.random.randint(130, 150)
-        exp = np.random.uniform(0.5, 1.5)
-        initial_lr = 10 ** (- exp)
-        lr_decay = np.random.uniform(0.7, 0.8)
-        max_epochs = 7
+        # frozen_layers = np.random.randint(130, 150)
+        # exp = np.random.uniform(0.5, 1.5)
+        # initial_lr = 10 ** (- exp)
+        initial_lr = 0.001
+        lr_decay = 0.90
+        # lr_decay = np.random.uniform(0.7, 0.8)
+        max_epochs = 10 
+        frozen_layers = 115 + count 
         # Identify 5th best performing model
         best_models = results['Val Accuracy']
         best_models = best_models.copy()

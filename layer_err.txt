@@ -1,0 +1,18 @@
+Traceback (most recent call last):
+  File "hyperparameter_tuning.py", line 2, in <module>
+    import tensorflow as tf
+ModuleNotFoundError: No module named 'tensorflow'
+WARNING:tensorflow:From /home/ubuntu/anaconda3/envs/tensorflow2_latest_p37/gpu/lib/python3.7/site-packages/tensorflow/python/training/tracking/tracking.py:111: Model.state_updates (from tensorflow.python.keras.engine.training) is deprecated and will be removed in a future version.
+Instructions for updating:
+This property should not be used in TensorFlow 2.0, as updates are applied automatically.
+WARNING:tensorflow:From /home/ubuntu/anaconda3/envs/tensorflow2_latest_p37/gpu/lib/python3.7/site-packages/tensorflow/python/training/tracking/tracking.py:111: Layer.updates (from tensorflow.python.keras.engine.base_layer) is deprecated and will be removed in a future version.
+Instructions for updating:
+This property should not be used in TensorFlow 2.0, as updates are applied automatically.
+Traceback (most recent call last):
+  File "hyperparameter_tuning.py", line 92, in <module>
+    main()
+  File "hyperparameter_tuning.py", line 66, in main
+    model = create_model(frozen_layers, input_shape, num_class)
+  File "/home/ubuntu/Structural-Image-Recognition/model.py", line 19, in create_model
+    tl_model.layers[i].trainable = False
+IndexError: list index out of range
