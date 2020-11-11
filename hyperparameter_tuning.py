@@ -2,6 +2,7 @@ import numpy as np
 import tensorflow as tf
 from model import create_model
 from util import *
+import shutil
 
 
 if tf.test.gpu_device_name(): 
@@ -39,16 +40,21 @@ def main():
         results = pd.read_csv(f, index_col = 0)
     print(results.columns)
     start = len(results.index)
-    for i in range(start, start + 100):
+    for i in range(start, start + 3):
         # INITIALIZE HYPERPARAMS
         # Model has 177 layers
         # frozen_layers = np.random.randint(100, 176)
-        frozen_layers = 150
-        exp = np.random.uniform(1, 3)
+        frozen_layers = np.random.randint(130, 150)
+        exp = np.random.uniform(0.5, 1.5)
         initial_lr = 10 ** (- exp)
-        lr_decay = np.random.uniform(0.7, 1)        
-        max_epochs = 7 
-        # max_epochs = np.random.randint(10, 15)
+        lr_decay = np.random.uniform(0.7, 0.8)
+        max_epochs = 7
+        # Identify 5th best performing model
+        best_models = results['Val Accuracy']
+        best_models = best_models.copy()
+        best_models = best_models.sort_values(ascending=False)
+        fifth_place = best_models.index[4]
+        fifth_performance = best_models[fifth_place]
 
         print(f"TRAINING MODEL WITH HYPERPARAMS -- frozen_layers: {frozen_layers}, initial_lr: {initial_lr}, lr_decay: {lr_decay}, max_epochs: {max_epochs}")
         # Create Model
@@ -56,14 +62,20 @@ def main():
         # Fit Model
         model, history = compile_and_fit(model, generator, train_x, train_y, val_x, val_y, max_epochs)
 
-        # Save everything useful
-        save_history(history, history_dir + str(i) + ".csv")
-        save_model(model, model_dir + str(i))
-
+        # Save everything usefuli
         train_perf = model.evaluate(train_x, train_y, verbose=1)
         val_perf = model.evaluate(val_x, val_y, verbose=1)
         hyper_param_arr = [frozen_layers, initial_lr, lr_decay, max_epochs]
         results.loc[i] = hyper_param_arr + train_perf + val_perf
+
+        save_history(history, history_dir + str(i) + ".csv")
+
+        val_acc = val_perf[1]
+        if val_acc > fifth_performance:
+            # save the new model
+            save_model(model, model_dir + str(i))
+            # delete the old model
+            shutil.rmtree(model_dir + str(fifth_place))
 
         with open(results_filename, 'w') as f:
             results.to_csv(f)
