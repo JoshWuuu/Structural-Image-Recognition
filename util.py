@@ -50,7 +50,7 @@ def evaluate_model(model, model_name, train_x, train_y,
 
 def compile_and_fit(model, generator, train_x_input, train_y_input,
                     val_x_input, val_y_input, MAX_EPOCHS,
-                    decay_step=500, batch_size=32, initial_lr=1e-3, lr_decay_rate=0.9):
+                    decay_step=500, batch_size=64, initial_lr=1e-3, lr_decay_rate=0.9):
     # Use exponentially decaying learning rate
     lr_schedule = keras.optimizers.schedules.ExponentialDecay(
         initial_learning_rate=initial_lr,
