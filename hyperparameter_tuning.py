@@ -36,9 +36,9 @@ def main():
     results_filename = 'results.csv'
 
     columns = ['Frozen Layers', 'Initial LR', 'LR Decay', 'Max Epochs', 'Batch Size', 'Train Loss', 'Train Accuracy', 'Train AUC', 'Val Loss', 'Val Accuracy', 'Val AUC']
-    #with open(results_filename, 'r') as f:
-    #    results = pd.read_csv(f, index_col = 0)
-    results = pd.DataFrame(columns = columns)
+    with open(results_filename, 'r') as f:
+        results = pd.read_csv(f, index_col = 0)
+    #results = pd.DataFrame(columns = columns)
     print(results.columns)
     #start = len(results.index)
     #count = 0
