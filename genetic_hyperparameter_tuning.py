@@ -15,6 +15,8 @@ def mkdir_if_not_exist(dir_path):
     except FileExistsError:
         pass
 
+
+# Do a hyperparameter search using a genetic algorithm
 def main():
     train_x, train_y, val_x, val_y = get_data(0.9)
     train_x = train_x
