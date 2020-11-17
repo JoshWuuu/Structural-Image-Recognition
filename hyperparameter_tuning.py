@@ -40,30 +40,31 @@ def main():
         results = pd.read_csv(f, index_col = 0)
     #results = pd.DataFrame(columns = columns)
     print(results.columns)
-    #start = len(results.index)
+    start = len(results.index)
     #count = 0
-    for i in range(0, 20):
+    for i in range(start, start + 20):
         # count += 1
         # INITIALIZE HYPERPARAMS
         # Model has 177 layers
         # frozen_layers = np.random.randint(100, 176)
         # frozen_layers = np.random.randint(130, 150)
         exp = np.random.uniform(1, 3)
-        initial_lr = 10 ** (- exp)
+        #initial_lr = 10 ** (- exp)
+        initial_lr = np.random.uniform(0.001, 0.004)
         # initial_lr = 0.001
-        lr_decay = np.random.uniform(0.7, 1) 
-        # lr_decay = np.random.uniform(0.7, 0.8)
+        #lr_decay = np.random.uniform(0.7, 1) 
+        lr_decay = np.random.uniform(0.7, 0.85)
         max_epochs = 7
         # frozen_layers = 115 + count 
-        frozen_layers = 130
+        frozen_layers = np.random.randint(120, 135)
         batch_size = 64;
 
         # Identify 5th best performing model
-       # best_models = results['Val Accuracy']
-        #best_models = best_models.copy()
-        #best_models = best_models.sort_values(ascending=False)
-        #fifth_place = best_models.index[4]
-       # fifth_performance = best_models[fifth_place]
+        best_models = results['Val Accuracy']
+        best_models = best_models.copy()
+        best_models = best_models.sort_values(ascending=False)
+        fifth_place = best_models.index[4]
+        fifth_performance = best_models[fifth_place]
 
         print(f"TRAINING MODEL WITH HYPERPARAMS -- frozen_layers: {frozen_layers}, initial_lr: {initial_lr}, lr_decay: {lr_decay}, max_epochs: {max_epochs}")
         # Create Model
@@ -80,12 +81,12 @@ def main():
 
         save_history(history, history_dir + str(i) + ".csv")
 
-        #val_acc = val_perf[1]
-        # if val_acc > fifth_performance:
-        #    # save the new model
-        #    save_model(model, model_dir + str(i))
+        val_acc = val_perf[1]
+        if val_acc > fifth_performance:
+            # save the new model
+            save_model(model, model_dir + str(i))
             # delete the old model
-        #    shutil.rmtree(model_dir + str(fifth_place))
+            shutil.rmtree(model_dir + str(fifth_place))
 
         with open(results_filename, 'w') as f:
             results.to_csv(f)
